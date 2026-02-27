@@ -237,15 +237,15 @@ void pseudo_inverse(Matrix * A, Matrix * B)
     lapack_int info;
     lapack_int s_info;
 
-    POTRF(&uplo, &I, A->vals, &I, &info);
+    // POTRF(&uplo, &I, A->vals, &I, &info);
 
     if (info != 0) {
         // Loud failure message
         fprintf(stderr, "ALTO: Cholesky factorization failed. No fallback implemented!");
     }
     else {
-        POTRS(&uplo, &I, &J, A->vals, &I,
-          B->vals, &I, &s_info);    
+        // POTRS(&uplo, &I, &J, A->vals, &I,
+        //  B->vals, &I, &s_info);
     }
 }
 
@@ -340,7 +340,7 @@ void mat_cholesky(Matrix * A) {
 
     //Matrix * _test = init_mat(A->I, A->J);
     //memcpy(_test->vals, A->vals, A->I * A->J);
-    POTRF(&uplo, &I, A->vals, &I, &info);
+    // POTRF(&uplo, &I, A->vals, &I, &info);
     if (info != 0) {
         // Loud failure message
         fprintf(stderr, "ALTO: Cholesky factorization failed(mat_cholesky). No fallback implemented!\n");
@@ -362,8 +362,8 @@ void mat_cholesky_solve(Matrix * A, Matrix * B) {
     lapack_int J = (lapack_int)B->I;
     lapack_int info;
 
-    POTRS(&uplo, &I, &J, A->vals, &I,
-        B->vals, &I, &info);  
+    // POTRS(&uplo, &I, &J, A->vals, &I,
+    //    B->vals, &I, &info);
     if (info != 0) {
         // Loud failure message
         fprintf(stderr, "ALTO: Cholesky solve failed. No fallback implemented!\n");

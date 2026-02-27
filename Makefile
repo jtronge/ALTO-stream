@@ -1,5 +1,6 @@
 # CONFIGURE BUILD SYSTEM
 TARGET     = cpd$(ALTO_MASK_LENGTH)
+LIBTARGET  = libalto.a
 BUILD_DIR  = ./build-$(ALTO_MASK_LENGTH)
 INC_DIR    = ./include
 SRC_DIR    = ./src
@@ -72,9 +73,14 @@ define speaker
 	@$(1)
 endef
 
+all: $(TARGET) $(LIBTARGET)
+
 $(TARGET): $(BUILD_DIR) $(OBJ)
 	@echo "===>  LINKING  $(TARGET)"
 	$(Q)$(CXX) $(LFLAGS) -o $(TARGET) $(OBJ) $(LIBS)
+
+$(LIBTARGET): $(BUILD_DIR) $(OBJ)
+	$(Q)$(AR) rcs $@ $(OBJ)
 
 asm: $(BUILD_DIR) $(ASM)
 

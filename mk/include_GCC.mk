@@ -9,7 +9,7 @@ BLASLIBS = -L$(MKLROOT)/lib/intel64 -lmkl_intel_ilp64 -lmkl_intel_thread -lmkl_c
 else
 BLASCFLAGS =
 BLASINC  =
-BLASLIBS = -lopenblas -lgfortran
+BLASLIBS = -lopenblas -llapack -lgfortran
 endif
 
 ifneq ($(ALTERNATIVE_PEXT),true)

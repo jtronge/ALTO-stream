@@ -420,7 +420,7 @@ for (int r = 0; r < rank; ++r) {
   lapack_int _rank = (lapack_int)rank;
   lapack_int I = (lapack_int)M->dims[mode];
   lapack_int info;
-  DPOTRF(&uplo, &_rank, grams[mode]->vals, &_rank, &info);
+  // DPOTRF(&uplo, &_rank, grams[mode]->vals, &_rank, &info);
   
   if(info == 0) {
 #if DEBUG == 1
@@ -429,8 +429,8 @@ for (int r = 0; r < rank; ++r) {
 #endif    
     // Cholesky was successful - use it to find the pseudo_inverse and multiply
     // it with the MTTKRP result
-    POTRS(&uplo, &_rank, &I, grams[mode]->vals, &_rank,
-          M->U[mode], &_rank, &info);
+    // POTRS(&uplo, &_rank, &I, grams[mode]->vals, &_rank,
+    //      M->U[mode], &_rank, &info);
 
 #if DEBUG == 1
     PrintFPMatrix("after - rhs", M->U[mode], I, rank);
