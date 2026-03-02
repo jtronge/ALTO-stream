@@ -27,9 +27,11 @@ IType argmin_elem(
   IType const N);
 
 
-inline int get_num_ptrn(IType nnz)
+inline int get_num_ptrn(IType nnz, int max_threads = -1)
 {
-  int max_threads = omp_get_max_threads();
+  if (max_threads == -1) {
+    max_threads = omp_get_max_threads();
+  }
   int num_partitions = max_threads;
   int nnz_ptrn = (nnz + num_partitions - 1) / num_partitions;
 
