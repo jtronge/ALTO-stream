@@ -31,7 +31,21 @@
 
 namespace alto {
 
-void make_alto_tensor(int nmodes, uint64_t* dims, uint64_t nnz, uint64_t** ind, double* vals, int nthreads)
+AltoTensorWrapper::AltoTensorWrapper()
+{
+}
+
+AltoTensorWrapper::~AltoTensorWrapper()
+{
+}
+
+struct AltoTensorWrapper::Pimpl {
+    // TODO
+    int i;
+};
+
+std::unique_ptr<AltoTensorWrapper> make_alto_tensor(int nmodes, uint64_t* dims, uint64_t nnz,
+                                                    uint64_t** ind, double* vals, int nthreads)
 {
     SparseTensor* spt = AllocSparseTensor(nnz, nmodes);
     printf("generating alto sparse tensor\n");
@@ -55,6 +69,8 @@ void make_alto_tensor(int nmodes, uint64_t* dims, uint64_t nnz, uint64_t** ind, 
     DestroySparseTensor(spt);
 
     destroy_alto(at);
+
+    return nullptr;
 }
 
 }
