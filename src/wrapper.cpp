@@ -72,7 +72,7 @@ struct AltoTensorWrapper::Pimpl {
         for (uint64_t m = 0; m < factor_ptrs.size(); ++m) {
             factor_ptrs[m] = factor_mats[m];
         }
-        mttkrp_alto_atomic(mode, factor_ptrs.data(), at, factor_ptrs.size(), rank);
+        mttkrp_alto(mode, factor_ptrs.data(), rank, at);
     }
 };
 
